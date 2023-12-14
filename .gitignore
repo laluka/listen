@@ -1,6 +1,5 @@
-node_modules
-*.mp3
-speech.mp3*
+.env
 .pdm-python
-__pycache__
+*.mp3
 *.pyc
+__pycache__
