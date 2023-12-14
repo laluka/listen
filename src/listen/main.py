@@ -23,6 +23,13 @@ logger = logging.getLogger(__name__)
 VERSION = "0.1.0"
 
 def main():
+    # Configure logger to output to stdout
+    handler = logging.StreamHandler()
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
+
+    # Set the logging level
     logger.setLevel(logging.DEBUG)
     logger.info("[+]Starting")
     arguments = docopt(__doc__, version=f"listen {VERSION}")
