@@ -11,9 +11,9 @@ Options:
     --debug                         Enable debugging output, to... Tou know... Debug.
 
 Examples:
-    listen http://foo.bar/baz
-    listen some_text.txt
-    listen some_doc.pdf
+    cat readme.md | listen
+    pdm run trafilatura -u https://www.lesswrong.com/tag/crockers-rules | listen
+    wget https://www.africau.edu/images/default/sample.pdf -O /tmp/pdf.pdf; pdm run python -c 'from pdfminer.high_level import extract_text; print(extract_text("/tmp/pdf.pdf"))' | listen
 """
 
 import logging
