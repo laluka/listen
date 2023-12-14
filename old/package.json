@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "audioconcat": "^0.1.4",
+    "axios": "^1.6.2",
+    "html-to-text": "^9.0.5",
+    "openai": "^4.21.0"
+  }
+}

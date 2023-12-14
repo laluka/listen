@@ -1,0 +1,2 @@
+[console_scripts]
+listen = listen.main:main
