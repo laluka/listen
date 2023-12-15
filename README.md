@@ -1,6 +1,21 @@
 # listen
 
-## Setup & Use
+## Setup for User
+
+```bash
+export OPENAI_TOKEN=sk-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+sudo apt update && sudo apt install -y pipx
+pipx ensurepath
+pipx install git+https://gitlab.com/TheLaluka/listen.git
+# Generate mp3 file
+echo "read me please"  | pdm run listen > "listen-$(date +%s).mp3"
+# Listen live
+echo "read me please"  | pdm run listen | vlc /dev/stdin
+```
+
+---
+
+## Setup for Developer
 
 ```bash
 rtx install
@@ -9,15 +24,15 @@ cp .env.example .env
 # Add your OPENAPI_TOKEN in .env
 source .env
 # Generate mp3 file
-echo coucou | pdm run listen > out.mp3
+echo "read me please"  | pdm run listen > "listen-$(date +%s).mp3"
 # Listen live
-echo coucou | pdm run listen | vlc /dev/stdin
+echo "read me please"  | pdm run listen | vlc /dev/stdin
 ```
 
 ## Help
 
 ```text
-pdm run listen -h
+listen -h
 2023-12-15 16:24:30,717 - listen.main - INFO - [+]Starting
 listen by Jonathan & @TheLaluka
 
@@ -32,7 +47,7 @@ Options:
     --debug                         Enable debugging output, to... Tou know... Debug.
 
 Examples:
-    cat readme.md | pdm run listen > out.mp3
-    pdm run trafilatura -u https://www.lesswrong.com/tag/crockers-rules | pdm run listen > out.mp3
-    wget https://www.africau.edu/images/default/sample.pdf -O /tmp/pdf.pdf; pdm run python -c 'from pdfminer.high_level import extract_text; print(extract_text("/tmp/pdf.pdf"))' | pdm run listen > out.mp3
+    cat readme.md | listen > out.mp3
+    pdm run trafilatura -u https://www.lesswrong.com/tag/crockers-rules | listen > out.mp3
+    wget https://www.africau.edu/images/default/sample.pdf -O /tmp/pdf.pdf; pdm run python -c 'from pdfminer.high_level import extract_text; print(extract_text("/tmp/pdf.pdf"))' | listen > out.mp3
 ```
