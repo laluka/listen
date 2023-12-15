@@ -5,6 +5,10 @@ from langchain.llms import OpenAI
 from langchain.prompts import PromptTemplate
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 template = """Could you remove corrupted sentence and wrong characters in the text included between <start_listen> and <stop_listen> tags: 
 <start_listen>
 {question}
@@ -23,5 +27,5 @@ def clean_text(text: str):
         chunk_size=1000, chunk_overlap=0, keep_separator=False
     )
     texts = text_splitter.split_text(text)
-
+    logger.info("Chunks to proces:", len(texts))
     return ". ".join([llm_chain.run(t) for t in texts])
