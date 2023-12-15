@@ -3,4 +3,5 @@
 *.mp3
 *.pyc
 __pycache__
-listen.egg-info
+.idea
+**/*.egg-info

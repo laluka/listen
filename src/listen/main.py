@@ -19,8 +19,13 @@ Examples:
 import logging
 from docopt import docopt
 from json import dumps
+
+from listen.clean_text import clean_text
+from listen.speech import to_speech
+
 logger = logging.getLogger(__name__)
 VERSION = "0.1.0"
+
 
 def main():
     # Configure logger to output to stdout
@@ -34,7 +39,18 @@ def main():
     logger.info("[+]Starting")
     arguments = docopt(__doc__, version=f"listen {VERSION}")
     logger.debug(f"Config: {dumps(arguments)}")
-    logger.info("Letzgooo")
+
+    txt = """What is kong & why we’re relying on it.
+    If you’re an occasional reader of the manomano-tech Medium blog, dxjksjdpijpi
+    you might already be familiar with Kong API Gateway thanks to previous ....
+    articles more dhuen developer-focused like this one: Improve your Kong Plugin Experience (https://medium.com/manomano-tech/improve-your-kong-plugin-experience-2e4bad9d6178?source=friends_link&sk=e362d5926727f4eac35ff76584060048).
+    If not, you can either read HD__(W past blog posts as an introduction,
+    or consider Kong as a “huge black-box that uses nginx & lua to create a clean approach to reverse-proxying” 🙂"""
+
+    text = clean_text(txt)
+
+    to_speech(text)
+
 
 if __name__ == "__main__":
     main()
