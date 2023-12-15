@@ -5,12 +5,12 @@ from langchain.llms import OpenAI
 from langchain.prompts import PromptTemplate
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
-template = """Could you remove corrupted sentence and wrong characters in the text included between <start> and <stop> tags: 
-<start>
+template = """Could you remove corrupted sentence and wrong characters in the text included between <start_listen> and <stop_listen> tags: 
+<start_listen>
 {question}
-<stop>
+<stop_listen>
 
-Don't include <start> or <stop> in the answer.
+Don't include <start_listen> or <stop_listen> in the answer.
 """
 
 prompt = PromptTemplate(template=template, input_variables=["question"])

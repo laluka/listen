@@ -7,5 +7,9 @@ rtx install
 pdm install
 cp .env.example .env
 # Add your OPENAPI_TOKEN in .env
-echo coucou | pdm run listen
+source .env
+# Generate mp3 file
+echo coucou | pdm run listen > out.mp3
+# Listen live
+echo coucou | pdm run listen | vlc /dev/stdin
 ```
