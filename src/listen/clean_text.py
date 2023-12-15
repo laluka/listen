@@ -14,7 +14,7 @@ Don't include <start> or <stop> in the answer.
 """
 
 prompt = PromptTemplate(template=template, input_variables=["question"])
-llm = OpenAI(openai_api_key=os.environ.get('OPENAI_TOKEN'))
+llm = OpenAI(openai_api_key=os.environ.get("OPENAI_TOKEN"))
 llm_chain = LLMChain(prompt=prompt, llm=llm)
 
 
@@ -24,4 +24,4 @@ def clean_text(text: str):
     )
     texts = text_splitter.split_text(text)
 
-    return '. '.join([llm_chain.run(t) for t in texts])
+    return ". ".join([llm_chain.run(t) for t in texts])
