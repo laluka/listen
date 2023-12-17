@@ -7,16 +7,24 @@
 ```bash
 # Get your key at https://platform.openai.com/api-keys
 export OPENAI_TOKEN=sk-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-sudo apt update && sudo apt install -y pipx
+sudo apt update && sudo apt install -y pipx wget
 pipx ensurepath
-python -m pip install --user --upgrade pipx 
+python -m pip install --user --upgrade pipx
+pipx install trafilatura  # Website Content Cleanup
+pipx install pdfminer     # Pdf Content Cleanup
 pipx install git+https://gitlab.com/TheLaluka/listen.git
 
 # Generate mp3 file
-echo "Life is beautiful. La vie est belle."  | listen > "listen-$(date +%s).mp3"
+echo 'Life is beautiful meand "la vie est belle !"'  | listen > out.mp3
 
 # Listen live
-echo "Life is beautiful. La vie est belle."  | listen | vlc /dev/stdin
+echo 'Life is beautiful meand "la vie est belle !"'  | listen | vlc /dev/stdin
+
+# Website To Voice
+trafilatura -u https://www.lesswrong.com/tag/crockers-rules | head  -n 1 | listen > out.mp3
+
+# Pdf To Voice
+wget https://www.africau.edu/images/default/sample.pdf -O /tmp/pdf.pdf && pdf2txt.py /tmp/pdf.pdf | head -n 3 | listen > out.mp3
 ```
 
 ---
@@ -30,9 +38,9 @@ cp .env.example .env
 # Add your OPENAPI_TOKEN in .env
 source .env
 # Generate mp3 file
-echo "Life is beautiful. La vie est belle."  | pdm run listen > "listen-$(date +%s).mp3"
+echo 'Life is beautiful meand "la vie est belle !"'  | pdm run listen > "listen-$(date +%s).mp3"
 # Listen live
-echo "Life is beautiful. La vie est belle."  | pdm run listen | vlc /dev/stdin
+echo 'Life is beautiful meand "la vie est belle !"'  | pdm run listen | vlc /dev/stdin
 ```
 
 ## Help
@@ -54,6 +62,6 @@ Options:
 
 Examples:
     cat readme.md | listen > out.mp3
-    pdm run trafilatura -u https://www.lesswrong.com/tag/crockers-rules | listen > out.mp3
-    wget https://www.africau.edu/images/default/sample.pdf -O /tmp/pdf.pdf; pdm run python -c 'from pdfminer.high_level import extract_text; print(extract_text("/tmp/pdf.pdf"))' | listen > out.mp3
+    trafilatura -u https://www.lesswrong.com/tag/crockers-rules | head  -n 1 | listen > out.mp3
+    wget https://www.africau.edu/images/default/sample.pdf -O /tmp/pdf.pdf; pdf2txt.py /tmp/pdf.pdf | listen > out.mp3
 ```
