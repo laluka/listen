@@ -1,16 +1,21 @@
 # listen
 
+> A simple linux piping tool to listen your pdf/site/doc/blogposts instead of reading them! ^.^
+
 ## Setup for User
 
 ```bash
+# Get your key at https://platform.openai.com/api-keys
 export OPENAI_TOKEN=sk-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 sudo apt update && sudo apt install -y pipx
 pipx ensurepath
 pipx install git+https://gitlab.com/TheLaluka/listen.git
+
 # Generate mp3 file
-echo "read me please"  | pdm run listen > "listen-$(date +%s).mp3"
+echo "Life is beautiful"  | pdm run listen > "listen-$(date +%s).mp3"
+
 # Listen live
-echo "read me please"  | pdm run listen | vlc /dev/stdin
+echo "Life is beautiful"  | pdm run listen | vlc /dev/stdin
 ```
 
 ---
@@ -24,9 +29,9 @@ cp .env.example .env
 # Add your OPENAPI_TOKEN in .env
 source .env
 # Generate mp3 file
-echo "read me please"  | pdm run listen > "listen-$(date +%s).mp3"
+echo "Life is beautiful"  | pdm run listen > "listen-$(date +%s).mp3"
 # Listen live
-echo "read me please"  | pdm run listen | vlc /dev/stdin
+echo "Life is beautiful"  | pdm run listen | vlc /dev/stdin
 ```
 
 ## Help
