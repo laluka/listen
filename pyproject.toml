@@ -26,4 +26,4 @@ package-type = "application"
 includes = ["src"]
 
 [project.scripts]
-listen = "listen.__main__:main"
+listen = "listen.main:main"
