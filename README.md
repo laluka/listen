@@ -12,10 +12,10 @@ pipx ensurepath
 pipx install git+https://gitlab.com/TheLaluka/listen.git
 
 # Generate mp3 file
-echo "Life is beautiful"  | pdm run listen > "listen-$(date +%s).mp3"
+echo "Life is beautiful. La vie est belle."  | listen > "listen-$(date +%s).mp3"
 
 # Listen live
-echo "Life is beautiful"  | pdm run listen | vlc /dev/stdin
+echo "Life is beautiful. La vie est belle."  | listen | vlc /dev/stdin
 ```
 
 ---
@@ -29,9 +29,9 @@ cp .env.example .env
 # Add your OPENAPI_TOKEN in .env
 source .env
 # Generate mp3 file
-echo "Life is beautiful"  | pdm run listen > "listen-$(date +%s).mp3"
+echo "Life is beautiful. La vie est belle."  | pdm run listen > "listen-$(date +%s).mp3"
 # Listen live
-echo "Life is beautiful"  | pdm run listen | vlc /dev/stdin
+echo "Life is beautiful. La vie est belle."  | pdm run listen | vlc /dev/stdin
 ```
 
 ## Help
