@@ -9,6 +9,7 @@
 export OPENAI_TOKEN=sk-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 sudo apt update && sudo apt install -y pipx
 pipx ensurepath
+python -m pip install --user --upgrade pipx 
 pipx install git+https://gitlab.com/TheLaluka/listen.git
 
 # Generate mp3 file
