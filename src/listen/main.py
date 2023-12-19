@@ -8,7 +8,7 @@ Usage:
 Options:
     -h --help                       Show help, you are here :)
     -v --version                    Show version info.
-    --debug                         Enable debugging output, to... Tou know... Debug.
+    --debug                         Enable debugging output, to... You know... Debug.
 
 Examples:
     cat readme.md | listen > out.mp3
