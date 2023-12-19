@@ -11,9 +11,9 @@ Options:
     --debug                         Enable debugging output, to... Tou know... Debug.
 
 Examples:
-    cat readme.md | pdm run listen > out.mp3
-    pdm run trafilatura -u https://www.lesswrong.com/tag/crockers-rules | pdm run listen > out.mp3
-    wget https://www.africau.edu/images/default/sample.pdf -O /tmp/pdf.pdf; pdm run python -c 'from pdfminer.high_level import extract_text; print(extract_text("/tmp/pdf.pdf"))' | pdm run listen > out.mp3
+    cat readme.md | listen > out.mp3
+    trafilatura -u https://www.lesswrong.com/tag/crockers-rules | head  -n 1 | listen > out.mp3
+    wget https://www.africau.edu/images/default/sample.pdf -O /tmp/pdf.pdf && pdf2txt.py /tmp/pdf.pdf | head -n 3 | listen > out.mp3
 """
 
 import logging
