@@ -7,12 +7,12 @@
 ```bash
 # Get your key at https://platform.openai.com/api-keys
 export OPENAI_TOKEN=sk-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-sudo apt update && sudo apt install -y pipx wget
-pipx ensurepath
-python -m pip install --user --upgrade pipx
-pipx install trafilatura  # Website Content Cleanup
-pipx install pdfminer     # Pdf Content Cleanup
-pipx install git+https://gitlab.com/TheLaluka/listen.git
+sudo apt update && sudo apt install -y wget git
+python3 -m pip install --user pipx --upgrade
+python3 -m pipx ensurepath
+python3 -m pipx install trafilatura  # Website Content Cleanup
+python3 -m pipx install pdfminer     # Pdf Content Cleanup
+python3 -m pipx install git+https://gitlab.com/TheLaluka/listen.git
 
 # Generate mp3 file
 echo 'Life is beautiful meand "la vie est belle !"'  | listen > out.mp3
