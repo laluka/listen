@@ -7,14 +7,14 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 import logging
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("listen")
 
-template = """Could you remove corrupted sentence and wrong characters in the text included between <start_listen> and <stop_listen> tags: 
+template = """Remove corrupted sentences, bad characters, and hard to read pieces in the text included between <start_listen> and <stop_listen> tags:
 <start_listen>
 {question}
 <stop_listen>
 
-Don't include <start_listen> or <stop_listen> in the answer.
+Don't include <start_listen> or <stop_listen> in the answer, and make things easier to read and hear.
 """
 
 prompt = PromptTemplate(template=template, input_variables=["question"])
@@ -23,9 +23,10 @@ llm_chain = LLMChain(prompt=prompt, llm=llm)
 
 
 def clean_text(text: str):
-    text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
-        chunk_size=1000, chunk_overlap=0, keep_separator=False
-    )
+    text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(chunk_size=2000, chunk_overlap=0, keep_separator=False)
     texts = text_splitter.split_text(text)
-    logger.info("Chunks to proces:", len(texts))
-    return ". ".join([llm_chain.run(t) for t in texts])
+    cleaned_text = []
+    for i, text in enumerate(texts):
+        logger.info(f"Processing chunk (TXT CLEANUP) {i+1} of {len(texts)}, chunk size is {len(text)}")
+        cleaned_text.append(llm_chain.run(text))
+    return ". ".join(cleaned_text)

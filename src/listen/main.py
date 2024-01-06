@@ -1,4 +1,4 @@
-"""listen by Jonathan & @TheLaluka
+"""Listen by Jonathan & @TheLaluka
 
 Usage:
     listen [--debug]
@@ -11,9 +11,9 @@ Options:
     --debug                         Enable debugging output, to... You know... Debug.
 
 Examples:
-    cat readme.md | listen > out.mp3
-    trafilatura -u https://www.lesswrong.com/tag/crockers-rules | head  -n 1 | listen > out.mp3
-    wget https://www.africau.edu/images/default/sample.pdf -O /tmp/pdf.pdf && pdf2txt.py /tmp/pdf.pdf | head -n 3 | listen > out.mp3
+    cat readme.md | listen
+    trafilatura -u https://www.lesswrong.com/tag/crockers-rules | head  -n 1 | listen
+    wget https://www.africau.edu/images/default/sample.pdf -O /tmp/pdf.pdf && pdf2txt.py /tmp/pdf.pdf | head -n 3 | listen
 """
 
 import logging
@@ -24,30 +24,31 @@ import sys
 from listen.clean_text import clean_text
 from listen.speech import to_speech
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("listen")
 VERSION = "0.1.0"
 
 
 def main():
-    # Configure logger to output to stdout
     handler = logging.StreamHandler()
-    formatter = logging.Formatter(
-        "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-    )
+    formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
     handler.setFormatter(formatter)
     logger.addHandler(handler)
+    logger.setLevel(logging.INFO)
 
-    # Set the logging level
-    logger.setLevel(logging.DEBUG)
-    logger.info("[+]Starting")
+    # Config parsing
+    logger.info("Starting listen")
     arguments = docopt(__doc__, version=f"listen {VERSION}")
+    if arguments.get("--debug"):
+        logger.setLevel(logging.DEBUG)
     logger.debug(f"Config: {dumps(arguments)}")
 
+    # Text clean-up
     text_raw = sys.stdin.read().strip()
     logger.debug(f"text_raw: {text_raw}")
     text_clean = clean_text(text_raw)
     logger.debug(f"text_clean: {text_clean}")
 
+    # TTS
     to_speech(text_clean)
 
 
