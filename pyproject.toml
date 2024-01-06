@@ -12,9 +12,9 @@ dependencies = [
     "langchain>=0.0.350",
     "tiktoken>=0.5.2",
     "black>=23.12.0",
+    "pydub>=0.25.1",
 ]
 requires-python = ">=3.8.1,<4.0"
-#requires-python = ">=3.8"
 readme = "README.md"
 license = {text = "MIT"}
 
@@ -24,5 +24,9 @@ package-type = "application"
 [tool.pdm.build]
 includes = ["src"]
 
+[tool.pdm.dev-dependencies]
+dev = [
+    "ipdb>=0.13.13",
+]
 [project.scripts]
 listen = "listen.main:main"
