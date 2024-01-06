@@ -12,7 +12,7 @@ python3 -m pip install --user pipx --upgrade
 python3 -m pipx ensurepath
 python3 -m pipx install trafilatura  # Website Content Cleanup
 python3 -m pipx install pdfminer     # Pdf Content Cleanup
-python3 -m pipx install git+https://gitlab.com/TheLaluka/listen.git
+python3 -m pipx install git+https://github.com/laluka/listen
 
 # Generate mp3 file
 echo 'Life is beautiful meand "la vie est belle !"' | listen
@@ -32,7 +32,8 @@ wget https://www.africau.edu/images/default/sample.pdf -O /tmp/pdf.pdf && pdf2tx
 ## Setup for Developer
 
 ```bash
-rtx install
+git clone git@github.com:laluka/listen.git
+mise install
 pdm install
 cp .env.example .env
 # Add your OPENAPI_TOKEN in .env
