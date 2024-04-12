@@ -35,13 +35,12 @@ wget https://www.africau.edu/images/default/sample.pdf -O /tmp/pdf.pdf && pdf2tx
 git clone git@github.com:laluka/listen.git
 mise install
 pdm install
-cp .env.example .env
-# Add your OPENAPI_TOKEN in .env
-source .env
+export OPENAI_TOKEN=sk-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
 # Generate mp3 file
-echo 'Life is beautiful meand "la vie est belle !"'  | pdm run listen
+echo 'Life is beautiful meand "la vie est belle !"' | pdm run listen
 # Listen live
-echo 'Life is beautiful meand "la vie est belle !"'  | pdm run listen
+echo 'Life is beautiful meand "la vie est belle !"' | pdm run listen
 
 # Before pushing changes, remember to
 pipx run black src --line-length 999

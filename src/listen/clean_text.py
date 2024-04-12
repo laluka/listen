@@ -1,7 +1,7 @@
 import os
 
 from langchain.chains import LLMChain
-from langchain.llms import OpenAI
+from langchain_openai import OpenAI
 from langchain.prompts import PromptTemplate
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
@@ -28,5 +28,5 @@ def clean_text(text: str):
     cleaned_text = []
     for i, text in enumerate(texts):
         logger.info(f"Processing chunk (TXT CLEANUP) {i+1} of {len(texts)}, chunk size is {len(text)}")
-        cleaned_text.append(llm_chain.run(text))
+        cleaned_text.append(llm_chain.invoke(text).get("text"))
     return ". ".join(cleaned_text)

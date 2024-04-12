@@ -6,3 +6,5 @@ __pycache__
 .idea
 **/*.egg-info
 __pypackages__
+.venv
+build
